@@ -79,7 +79,7 @@ $sql= "SELECT
     //     echo "0 rezultata";
     // }
 
-    $conn->close();
+    // $conn->close();
 
 }
 
