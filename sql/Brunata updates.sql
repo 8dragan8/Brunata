@@ -20,7 +20,40 @@ USE brunata;
 --     13478.5
 -- );
 
-INSERT INTO ocitani_impulsi(
+-- INSERT INTO ocitani_impulsi(
+--     idstan,
+--     idracun,
+--     br_impulsa,
+--     stan_kWh_po_m2,
+--     stan_kWh_po_imp,
+--     stan_kWh
+-- )
+-- SELECT
+--       -- `Kod stana`,
+--       (SELECT idstan_novi FROM stan where idstan_stari=`Kod stana`),
+--       201603,
+--       REPLACE(REPLACE(REPLACE(`Impulsi`, " imp", ""), ".", ""), ",", "."),
+--       REPLACE(REPLACE(REPLACE(`Var potrosnja`, " kWh", ""), ".", ""), ",", "."),
+--       REPLACE(REPLACE(REPLACE(`Zajedn potrosnja`, " kWh", ""), ".", ""), ",", "."),
+--       REPLACE(REPLACE(REPLACE(`Ukupna potrosnja`, " kWh", ""), ".", ""), ",", ".")
+-- FROM 2016_03
+-- -- ORDER BY Kolona_4 DESC
+-- ;
+
+-- SELECT idstan_novi, idstan_stari, `Kod stana`
+-- FROM stan inner join 2016_03 on
+-- stan.idstan_stari=2016_03.`Kod stana`
+-- -- where stan.idstan_stari=2016_03.`Kod stana`
+-- ;
+
+
+
+DROP procedure IF EXISTS Brunata.popuniTabele;
+
+
+CREATE PROCEDURE Brunata.popuniTabele(IN tab_name VARCHAR(64) )
+BEGIN
+	SET @sql = CONCAT('INSERT INTO ocitani_impulsi(
     idstan,
     idracun,
     br_impulsa,
@@ -29,19 +62,32 @@ INSERT INTO ocitani_impulsi(
     stan_kWh
 )
 SELECT
-      -- `Kod stana`,
       (SELECT idstan_novi FROM stan where idstan_stari=`Kod stana`),
-      201603,
+      ', REPLACE(tab_name, "_", ""), ',
       REPLACE(REPLACE(REPLACE(`Impulsi`, " imp", ""), ".", ""), ",", "."),
       REPLACE(REPLACE(REPLACE(`Var potrosnja`, " kWh", ""), ".", ""), ",", "."),
       REPLACE(REPLACE(REPLACE(`Zajedn potrosnja`, " kWh", ""), ".", ""), ",", "."),
       REPLACE(REPLACE(REPLACE(`Ukupna potrosnja`, " kWh", ""), ".", ""), ",", ".")
-FROM 2016_03
--- ORDER BY Kolona_4 DESC
-;
+FROM ', tab_name);
+	PREPARE stmt FROM @sql;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;
+END;
 
--- SELECT idstan_novi, idstan_stari, `Kod stana`
--- FROM stan inner join 2016_03 on
--- stan.idstan_stari=2016_03.`Kod stana`
--- -- where stan.idstan_stari=2016_03.`Kod stana`
--- ;
+Show PROCEDURE status;
+
+
+CALL Brunata.popuniTabele('2016_01');
+CALL Brunata.popuniTabele('2016_02');
+CALL Brunata.popuniTabele('2016_03');
+CALL Brunata.popuniTabele('2016_04');
+CALL Brunata.popuniTabele('2016_10');
+CALL Brunata.popuniTabele('2016_11');
+CALL Brunata.popuniTabele('2016_12');
+CALL Brunata.popuniTabele('2017_01');
+CALL Brunata.popuniTabele('2017_02');
+CALL Brunata.popuniTabele('2017_03');
+CALL Brunata.popuniTabele('2017_04');
+CALL Brunata.popuniTabele('2017_10');
+CALL Brunata.popuniTabele('2017_11');
+CALL Brunata.popuniTabele('2017_12');

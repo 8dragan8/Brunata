@@ -44,43 +44,52 @@ function showAllData() {
 
 function Iscitavanje($conn) {
 
-    
+    $sql= "SELECT
+                idracun,
+                period,
+                ukupna_kvadratura,
+                ukupno_imp,
+                ukupno_kWh,
+                ukupn0_kWh_po_m2,
+                ukupn0_kWh_po_imp
 
-$sql= "SELECT
-            idracun,
-            period,
-            ukupna_kvadratura,
-            ukupno_imp,
-            ukupno_kWh,
-            ukupn0_kWh_po_m2,
-            ukupn0_kWh_po_imp
+            from racun"
+            ;
 
-        from racun"
-        ;
-
-// $rezultat=$conn->query($sql);
-
-//     if ($rezultat->num_rows>0) {
-//         //izbaci podatke za svaki red
-//         while ($row=$rezultat->fetch_assoc()) {
-
-    foreach ($conn->query($sql) as $row) { 
-            echo "<tr>
-            <th scope='row'>" . $row["idracun"]."</th>
-            <th scope='row'>" . $row["period"]."</th>
-            <th scope='row'>" . $row["ukupna_kvadratura"]."</th>
-            <th scope='row'>" . $row["ukupno_imp"]."</th>
-            <th scope='row'>" . $row["ukupno_kWh"]."</th>
-            <th scope='row'>" . $row["ukupn0_kWh_po_m2"]."</th>
-            <th scope='row'>" . $row["ukupn0_kWh_po_imp"]."</th>
-            </tr>";
-        }
-    // } else {
-    //     echo "0 rezultata";
-    // }
-
-    // $conn->close();
+        foreach ($conn->query($sql) as $row) { 
+                echo "<tr>
+                <th scope='row'>" . $row["idracun"]."</th>
+                <th scope='row'>" . $row["period"]."</th>
+                <th scope='row'>" . $row["ukupna_kvadratura"]."</th>
+                <th scope='row'>" . $row["ukupno_imp"]."</th>
+                <th scope='row'>" . $row["ukupno_kWh"]."</th>
+                <th scope='row'>" . $row["ukupn0_kWh_po_m2"]."</th>
+                <th scope='row'>" . $row["ukupn0_kWh_po_imp"]."</th>
+                </tr>";
+            }
 
 }
+
+function IscitavanjeTabelaStaro ($conn, $unosTabela){
+
+    try {
+    
+    $sql= "CALL Brunata.popuniTabele('$unosTabela');";
+        
+        
+        $stmt = $conn->query($sql);
+
+        // echo $sql . " >>>>>>>>>   " . " >>>>>>>>>   " . " >>>>>>>>>   " . $unosTabela;
+        
+          $stmt ->debugDumpParams();
+            }
+    catch(PDOException $e)
+        {
+        echo $sql . "<br>" . $e->getMessage();
+        }
+
+
+}
+
 
 ?>        

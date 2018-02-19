@@ -32,16 +32,6 @@
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-    //     $stmt = $conn->prepare( "INSERT INTO racun(idracun, period, ukupna_kvadratura, ukupno_imp, ukupno_kWh, ukupn0_kWh_po_m2, ukupn0_kWh_po_imp)"
-    //     ." VALUES(:idracun, :period, :ukupna_kvadratura, :ukupno_imp, :ukupno_kWh, :ukupn0_kWh_po_m2, :ukupn0_kWh_po_imp);"
-    // );
-    // $stmt->bindParam(':idracun', $unesiID);
-    // $stmt->bindParam(':period', $unesiPeriod);
-    // $stmt->bindParam(':ukupna_kvadratura', $unesim2Ukup);
-    // $stmt->bindParam(':ukupno_imp', $unesiIMPukup);
-    // $stmt->bindParam(':ukupno_kWh', $unesikWhukup);
-    // $stmt->bindParam(':ukupn0_kWh_po_m2', $unesikWhpoM2);
-    // $stmt->bindParam(':ukupn0_kWh_po_imp', $unesikWhpoIMP);
     
             $unesiID = substr(str_replace("-", "", trim($_POST["period"])),0, 6);
             $unesiPeriod = trim($_POST["period"]);
@@ -50,8 +40,6 @@
             $unesikWhukup = trim($_POST["kWhukup"]);
             $unesikWhpoM2 = trim($_POST["kwhpoM2"]);
             $unesikWhpoIMP = trim($_POST["kWhpoIMP"]);
-
-        // $stmt->execute();
 
         InputIntoRacuni($conn, $unesiID, $unesiPeriod, $unesim2Ukup, $unesiIMPukup, $unesikWhukup, $unesikWhpoM2, $unesikWhpoIMP);
 
