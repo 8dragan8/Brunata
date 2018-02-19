@@ -48,46 +48,83 @@ USE brunata;
 
 
 
-DROP procedure IF EXISTS Brunata.popuniTabele;
+-- DROP procedure IF EXISTS Brunata.popuniTabele;
 
 
-CREATE PROCEDURE Brunata.popuniTabele(IN tab_name VARCHAR(64) )
-BEGIN
-	SET @sql = CONCAT('INSERT INTO ocitani_impulsi(
-    idstan,
-    idracun,
-    br_impulsa,
-    stan_kWh_po_m2,
-    stan_kWh_po_imp,
-    stan_kWh
-)
-SELECT
-      (SELECT idstan_novi FROM stan where idstan_stari=`Kod stana`),
-      ', REPLACE(tab_name, "_", ""), ',
-      REPLACE(REPLACE(REPLACE(`Impulsi`, " imp", ""), ".", ""), ",", "."),
-      REPLACE(REPLACE(REPLACE(`Var potrosnja`, " kWh", ""), ".", ""), ",", "."),
-      REPLACE(REPLACE(REPLACE(`Zajedn potrosnja`, " kWh", ""), ".", ""), ",", "."),
-      REPLACE(REPLACE(REPLACE(`Ukupna potrosnja`, " kWh", ""), ".", ""), ",", ".")
-FROM ', tab_name);
-	PREPARE stmt FROM @sql;
-	EXECUTE stmt;
-	DEALLOCATE PREPARE stmt;
-END;
+-- CREATE PROCEDURE Brunata.popuniTabele(IN tab_name VARCHAR(64) )
+-- BEGIN
+-- 	SET @sql = CONCAT('INSERT INTO ocitani_impulsi(
+--                             idstan,
+--                             idracun,
+--                             br_impulsa,
+--                             stan_kWh_po_m2,
+--                             stan_kWh_po_imp,
+--                             stan_kWh
+--                         )
+--                         SELECT
+--                             (SELECT idstan_novi FROM stan where idstan_stari=`Kod stana`),
+--                             ', REPLACE(tab_name, "_", ""), ',
+--                             REPLACE(REPLACE(REPLACE(`Impulsi`, " imp", ""), ".", ""), ",", "."),
+--                             REPLACE(REPLACE(REPLACE(`Var potrosnja`, " kWh", ""), ".", ""), ",", "."),
+--                             REPLACE(REPLACE(REPLACE(`Zajedn potrosnja`, " kWh", ""), ".", ""), ",", "."),
+--                             REPLACE(REPLACE(REPLACE(`Ukupna potrosnja`, " kWh", ""), ".", ""), ",", ".")
+--                         FROM ', tab_name
+--                         );
+-- 	PREPARE stmt FROM @sql;
+-- 	EXECUTE stmt;
+-- 	DEALLOCATE PREPARE stmt;
+-- END;
 
-Show PROCEDURE status;
 
 
-CALL Brunata.popuniTabele('2016_01');
-CALL Brunata.popuniTabele('2016_02');
-CALL Brunata.popuniTabele('2016_03');
-CALL Brunata.popuniTabele('2016_04');
-CALL Brunata.popuniTabele('2016_10');
-CALL Brunata.popuniTabele('2016_11');
-CALL Brunata.popuniTabele('2016_12');
-CALL Brunata.popuniTabele('2017_01');
-CALL Brunata.popuniTabele('2017_02');
-CALL Brunata.popuniTabele('2017_03');
-CALL Brunata.popuniTabele('2017_04');
-CALL Brunata.popuniTabele('2017_10');
-CALL Brunata.popuniTabele('2017_11');
-CALL Brunata.popuniTabele('2017_12');
+-- DROP procedure IF EXISTS Brunata.popuniTabeleNOVO;
+
+
+-- CREATE PROCEDURE Brunata.popuniTabeleNOVO(IN tab_name VARCHAR(64) )
+-- BEGIN
+-- 	SET @sql = CONCAT('INSERT INTO ocitani_impulsi(
+--                             idstan,
+--                             idracun,
+--                             br_impulsa,
+--                             stan_kWh_po_m2,
+--                             stan_kWh_po_imp,
+--                             stan_kWh
+--                         )
+--                         SELECT
+--                             id,
+--                             ', REPLACE(tab_name, "_", ""), ',
+--                             REPLACE(REPLACE(REPLACE(`Impulsi`, " imp", ""), ".", ""), ",", "."),
+--                             REPLACE(REPLACE(REPLACE(`kWh_m2`, " kWh", ""), ".", ""), ",", "."),
+--                             REPLACE(REPLACE(REPLACE(`kWh_Var`, " kWh", ""), ".", ""), ",", "."),
+--                             REPLACE(REPLACE(REPLACE(`kWhSum`, " kWh", ""), ".", ""), ",", ".")
+--                         FROM ', tab_name
+--                         );
+-- 	PREPARE stmt FROM @sql;
+-- 	EXECUTE stmt;
+-- 	DEALLOCATE PREPARE stmt;
+-- END;
+
+-- Show PROCEDURE status;
+
+
+-- CALL Brunata.popuniTabele('2016_01');
+-- CALL Brunata.popuniTabele('2016_02');
+-- CALL Brunata.popuniTabele('2016_03');
+-- CALL Brunata.popuniTabele('2016_04');
+-- CALL Brunata.popuniTabele('2016_10');
+-- CALL Brunata.popuniTabele('2016_11');
+-- CALL Brunata.popuniTabele('2016_12');
+-- CALL Brunata.popuniTabele('2017_01');
+-- CALL Brunata.popuniTabele('2017_02');
+-- CALL Brunata.popuniTabele('2017_03');
+-- CALL Brunata.popuniTabele('2017_04');
+-- CALL Brunata.popuniTabeleNOVO('2017_10');
+-- CALL Brunata.popuniTabeleNOVO('2017_11');
+-- CALL Brunata.popuniTabeleNOVO('2017_12');
+
+
+
+SELECT date_format(period, "%Y-%M") as Racun, count(*) from ocitani_impulsi
+join racun on ocitani_impulsi.idracun=racun.idracun
+group by period
+order by PERIOD;

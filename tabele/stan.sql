@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2018 at 08:58 PM
+-- Generation Time: Feb 19, 2018 at 12:23 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -106,7 +106,7 @@ INSERT INTO `stan` (`idstan_stari`, `idstan_novi`, `vlasnik`, `ulaz`, `sprat`, `
 (100388, 229926, 'Sara Jovanovic         ', '13    ', 'II', ' 11', 38.00, 'Stan'),
 (100391, 229927, 'Dusanka Stoisavljevic  ', '13    ', 'II', ' 13', 29.00, 'Stan'),
 (100392, 229928, 'Nevena Maksimovic      ', '13    ', 'II', ' 14', 21.00, 'Stan'),
-(100393, 229929, 'Vesna Zdraveski        ', '13    ', 'III', ' 15', 38.00, 'Stan'),
+(100393, 229929, 'Vesna Zdraveski Doncev        ', '13    ', 'III', ' 15', 38.00, 'Stan'),
 (100394, 229930, 'Gorica Matic           ', '13    ', 'III', ' 16', 35.00, 'Stan'),
 (100395, 229931, 'Greta Panic            ', '13    ', 'III', ' 17', 38.00, 'Stan'),
 (100398, 229932, 'Sinisa Babic           ', '13    ', 'III', ' 19', 29.00, 'Stan'),
