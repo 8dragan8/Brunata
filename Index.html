@@ -35,6 +35,9 @@
                     <li class="list-group-item">
                         <a class="btn btn-default" href="Ubacivanje tabela.html" role="button">Ubacivanje tabela</a>
                     </li>
+                    <li class="list-group-item">
+                        <a class="btn btn-default" href="Grafik potrosnje.php" role="button">Grafik potrosnje</a>
+                    </li>
 
                 </ul>
                 
@@ -57,27 +60,44 @@
 
             // The data for our dataset
             data: {
-                    labels: ["January", "February", "March", "April", "May", "June", "July"],
                     datasets: [
                                 {
                                     label: "2",
                                     backgroundColor: 'rgba(12, 99, 0, 0.6)',
                                     borderColor: 'rgba(22,34, 5, 0.7)',
-                                    data: [2, 34, 14, 18, 7, 9, 22],
+                                    data: [2, 34, 14, 18, 7, 9, 40000],
                                 },
                                 {
                                     label: "1",
                                     backgroundColor: 'rgba(255, 99, 0, 0.6)',
                                     borderColor: 'rgba(0, 0, 0, 0.1)',
-                                    data: [0, 10, 5, 2, 20, 30, 45],
+                                    data: [{x: 3,y: 30}, {x: 1,y: 10}, {x: 4 ,y: 40}, {x: 2,y: 20}],
+                                    max:"10",
                                 }
                                 
-                                ]
+                                ],
+                    labels: ["January", "February", "March", "April", "May", "June", "July"]
             },
 
             // Configuration options go here
 
-            options: {}
+            options: {
+                    // scales: {
+                    //     yAxes: [{
+                    //         ticks: {
+                    //             Min: 0,
+                    //             Max: "10",
+                    //             }
+                    //         }],
+                    //     xAxes: [{
+                    //         time: {
+                    //             unit: 'month'
+                    //         }
+                    //     }]
+                    // }
+    
+
+            }
 
         });
     

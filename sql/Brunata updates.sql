@@ -124,7 +124,50 @@ USE brunata;
 
 
 
-SELECT date_format(period, "%Y-%M") as Racun, count(*) from ocitani_impulsi
-join racun on ocitani_impulsi.idracun=racun.idracun
-group by period
-order by PERIOD;
+-- SELECT
+--     date_format(period, "%Y-%M") as Racun,
+--     ukupn0_kWh_po_m2 / ukupno_kWh as `Zajednicki deo`
+-- from ocitani_impulsi
+-- join racun on ocitani_impulsi.idracun=racun.idracun
+-- group by period
+-- order by PERIOD;
+
+-- najveca ukupna potrosnja kWh
+
+SELECT
+    CONCAT_WS(" - ", vlasnik, ulaz, broj_stana) AS Stan,
+    idracun as RACUN,
+    MAX(stan_kWh) AS `potrosnja UKUPNA`
+FROM ocitani_impulsi Join stan on stan.idstan_novi=ocitani_impulsi.idstan
+-- izbacivanje januara 2016
+where idracun <> "201601"
+group by stan.idstan_novi
+order by `potrosnja UKUPNA` DESC
+limit 20;
+
+-- najveca VAR potrosnja kWh
+
+SELECT
+    CONCAT_WS(" - ", vlasnik, ulaz, broj_stana) AS Stan,
+    idracun as RACUN,
+    MAX(stan_kWh_po_imp) AS `potrosnja VAR`
+FROM ocitani_impulsi Join stan on stan.idstan_novi=ocitani_impulsi.idstan
+-- izbacivanje januara 2016
+where idracun <> "201601"
+group by stan.idstan_novi
+order by `potrosnja VAR` DESC
+limit 20;
+
+
+-- najveca ZAJED potrosnja kWh
+
+SELECT
+    CONCAT_WS(" - ", vlasnik, ulaz, broj_stana) AS Stan,
+    idracun as RACUN,
+    MAX(stan_kWh_po_m2) AS `potrosnja ZAJED`
+FROM ocitani_impulsi Join stan on stan.idstan_novi=ocitani_impulsi.idstan
+-- izbacivanje januara 2016
+where idracun <> "201601"
+group by stan.idstan_novi
+order by `potrosnja ZAJED` DESC
+limit 20;
