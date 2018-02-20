@@ -297,7 +297,7 @@ DROP TABLE IF EXISTS `brunata`.`racun` ;
 CREATE TABLE IF NOT EXISTS `brunata`.`racun` (
   `idracun` INT(11) NOT NULL,
   `period` DATE NOT NULL,
-  `ukupna_kvadratura` FLOAT(10,2) NOT NULL DEFAULT 3880.60,
+  `ukupna_kvadratura` FLOAT(10,2) NOT NULL,
   `ukupno_imp` INT(5) NOT NULL,
   `ukupno_kWh` FLOAT(10,2) NOT NULL,
   `ukupno_kWh_po_m2` FLOAT(10,2) NOT NULL,
