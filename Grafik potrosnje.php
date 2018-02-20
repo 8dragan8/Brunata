@@ -25,7 +25,7 @@
         global $conn;
 
         $param_1='ukupno_kWh';
-        $param_2='ukupn0_kWh_po_imp';
+        $param_2='ukupno_kWh_po_imp';
         $param_3='ukupno_kWh';
 
 

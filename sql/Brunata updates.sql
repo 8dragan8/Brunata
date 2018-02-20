@@ -7,8 +7,8 @@ USE brunata;
 --     ukupna_kvadratura,
 --     ukupno_imp,
 --     ukupno_kWh,
---     ukupn0_kWh_po_m2,
---     ukupn0_kWh_po_imp
+--     ukupno_kWh_po_m2,
+--     ukupno_kWh_po_imp
 -- )
 -- VALUES(
 --     201603,
@@ -107,26 +107,26 @@ USE brunata;
 -- Show PROCEDURE status;
 
 
--- CALL Brunata.popuniTabele('2016_01');
--- CALL Brunata.popuniTabele('2016_02');
--- CALL Brunata.popuniTabele('2016_03');
--- CALL Brunata.popuniTabele('2016_04');
--- CALL Brunata.popuniTabele('2016_10');
--- CALL Brunata.popuniTabele('2016_11');
--- CALL Brunata.popuniTabele('2016_12');
--- CALL Brunata.popuniTabele('2017_01');
--- CALL Brunata.popuniTabele('2017_02');
--- CALL Brunata.popuniTabele('2017_03');
--- CALL Brunata.popuniTabele('2017_04');
--- CALL Brunata.popuniTabeleNOVO('2017_10');
--- CALL Brunata.popuniTabeleNOVO('2017_11');
--- CALL Brunata.popuniTabeleNOVO('2017_12');
+CALL Brunata.popuniTabele('2016_01');
+CALL Brunata.popuniTabele('2016_02');
+CALL Brunata.popuniTabele('2016_03');
+CALL Brunata.popuniTabele('2016_04');
+CALL Brunata.popuniTabele('2016_10');
+CALL Brunata.popuniTabele('2016_11');
+CALL Brunata.popuniTabele('2016_12');
+CALL Brunata.popuniTabele('2017_01');
+CALL Brunata.popuniTabele('2017_02');
+CALL Brunata.popuniTabele('2017_03');
+CALL Brunata.popuniTabele('2017_04');
+CALL Brunata.popuniTabeleNOVO('2017_10');
+CALL Brunata.popuniTabeleNOVO('2017_11');
+CALL Brunata.popuniTabeleNOVO('2017_12');
 
 
 
 -- SELECT
 --     date_format(period, "%Y-%M") as Racun,
---     ukupn0_kWh_po_m2 / ukupno_kWh as `Zajednicki deo`
+--     ukupno_kWh_po_m2 / ukupno_kWh as `Zajednicki deo`
 -- from ocitani_impulsi
 -- join racun on ocitani_impulsi.idracun=racun.idracun
 -- group by period

@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `brunata`
 --
+USE Brunata;
 
 -- --------------------------------------------------------
 
@@ -28,15 +29,15 @@ SET time_zone = "+00:00";
 -- Table structure for table `racun`
 --
 
-CREATE TABLE `racun` (
-  `idracun` int(11) NOT NULL,
-  `period` date NOT NULL,
-  `ukupna_kvadratura` float(10,2) NOT NULL DEFAULT '3880.60',
-  `ukupno_imp` int(5) NOT NULL,
-  `ukupno_kWh` float(10,2) NOT NULL,
-  `ukupno_kWh_po_m2` float(10,2) NOT NULL,
-  `ukupno_kWh_po_imp` float(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- CREATE TABLE `racun` (
+--   `idracun` int(11) NOT NULL,
+--   `period` date NOT NULL,
+--   `ukupna_kvadratura` float(10,2) NOT NULL DEFAULT '3880.60',
+--   `ukupno_imp` int(5) NOT NULL,
+--   `ukupno_kWh` float(10,2) NOT NULL,
+--   `ukupno_kWh_po_m2` float(10,2) NOT NULL,
+--   `ukupno_kWh_po_imp` float(10,2) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `racun`

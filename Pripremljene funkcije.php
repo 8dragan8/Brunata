@@ -5,16 +5,16 @@
 
 function InputIntoRacuni($conn, $unesiID, $unesiPeriod, $unesim2Ukup, $unesiIMPukup, $unesikWhukup, $unesikWhpoM2, $unesikWhpoIMP){
         
-        $stmt = $conn->prepare( "INSERT INTO racun(idracun, period, ukupna_kvadratura, ukupno_imp, ukupno_kWh, ukupn0_kWh_po_m2, ukupn0_kWh_po_imp)"
-        ." VALUES(:idracun, :period, :ukupna_kvadratura, :ukupno_imp, :ukupno_kWh, :ukupn0_kWh_po_m2, :ukupn0_kWh_po_imp);"
+        $stmt = $conn->prepare( "INSERT INTO racun(idracun, period, ukupna_kvadratura, ukupno_imp, ukupno_kWh, ukupno_kWh_po_m2, ukupno_kWh_po_imp)"
+        ." VALUES(:idracun, :period, :ukupna_kvadratura, :ukupno_imp, :ukupno_kWh, :ukupno_kWh_po_m2, :ukupno_kWh_po_imp);"
     );
     $stmt->bindParam(':idracun', $unesiID);
     $stmt->bindParam(':period', $unesiPeriod);
     $stmt->bindParam(':ukupna_kvadratura', $unesim2Ukup);
     $stmt->bindParam(':ukupno_imp', $unesiIMPukup);
     $stmt->bindParam(':ukupno_kWh', $unesikWhukup);
-    $stmt->bindParam(':ukupn0_kWh_po_m2', $unesikWhpoM2);
-    $stmt->bindParam(':ukupn0_kWh_po_imp', $unesikWhpoIMP);
+    $stmt->bindParam(':ukupno_kWh_po_m2', $unesikWhpoM2);
+    $stmt->bindParam(':ukupno_kWh_po_imp', $unesikWhpoIMP);
     
     
     $stmt->execute();
@@ -50,8 +50,8 @@ function Iscitavanje($conn) {
                 ukupna_kvadratura,
                 ukupno_imp,
                 ukupno_kWh,
-                ukupn0_kWh_po_m2,
-                ukupn0_kWh_po_imp
+                ukupno_kWh_po_m2,
+                ukupno_kWh_po_imp
 
             from racun"
             ;
@@ -63,8 +63,8 @@ function Iscitavanje($conn) {
                 <th scope='row'>" . $row["ukupna_kvadratura"]."</th>
                 <th scope='row'>" . $row["ukupno_imp"]."</th>
                 <th scope='row'>" . $row["ukupno_kWh"]."</th>
-                <th scope='row'>" . $row["ukupn0_kWh_po_m2"]."</th>
-                <th scope='row'>" . $row["ukupn0_kWh_po_imp"]."</th>
+                <th scope='row'>" . $row["ukupno_kWh_po_m2"]."</th>
+                <th scope='row'>" . $row["ukupno_kWh_po_imp"]."</th>
                 </tr>";
             }
 

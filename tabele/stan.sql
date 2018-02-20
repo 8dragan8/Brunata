@@ -21,23 +21,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `brunata`
 --
-
+USE Brunata;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `stan`
 --
 
-CREATE TABLE `stan` (
-  `idstan_stari` int(6) DEFAULT NULL,
-  `idstan_novi` int(6) NOT NULL,
-  `vlasnik` varchar(100) DEFAULT NULL,
-  `ulaz` varchar(12) NOT NULL,
-  `sprat` enum('Prizemlje','I','II','III','IV','V') NOT NULL,
-  `broj_stana` varchar(3) NOT NULL,
-  `kvadratura` float(10,2) NOT NULL,
-  `tip` enum('Stan','Lokal') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- CREATE TABLE `stan` (
+--   `idstan_stari` int(6) DEFAULT NULL,
+--   `idstan_novi` int(6) NOT NULL,
+--   `vlasnik` varchar(100) DEFAULT NULL,
+--   `ulaz` varchar(12) NOT NULL,
+--   `sprat` enum('Prizemlje','I','II','III','IV','V') NOT NULL,
+--   `broj_stana` varchar(3) NOT NULL,
+--   `kvadratura` float(10,2) NOT NULL,
+--   `tip` enum('Stan','Lokal') NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `stan`
