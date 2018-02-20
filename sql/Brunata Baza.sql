@@ -300,8 +300,8 @@ CREATE TABLE IF NOT EXISTS `brunata`.`racun` (
   `ukupna_kvadratura` FLOAT(10,2) NOT NULL DEFAULT 3880.60,
   `ukupno_imp` INT(5) NOT NULL,
   `ukupno_kWh` FLOAT(10,2) NOT NULL,
-  `ukupn0_kWh_po_m2` FLOAT(10,2) NOT NULL,
-  `ukupn0_kWh_po_imp` FLOAT(10,2) NOT NULL,
+  `ukupno_kWh_po_m2` FLOAT(10,2) NOT NULL,
+  `ukupno_kWh_po_imp` FLOAT(10,2) NOT NULL,
   PRIMARY KEY (`idracun`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
