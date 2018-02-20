@@ -104,8 +104,8 @@
                             <th scope="col">ukupna_kvadratura</th>
                             <th scope="col">ukupno_imp</th>
                             <th scope="col">ukupno_kWh</th>
-                            <th scope="col">ukupn0_kWh_po_m2</th>
-                            <th scope="col">ukupn0_kWh_po_im</th>
+                            <th scope="col">ukupno_kWh_po_m2</th>
+                            <th scope="col">ukupno_kWh_po_im</th>
                         </tr>
                     </thead>
                     <tbody>
