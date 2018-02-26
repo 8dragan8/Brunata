@@ -107,20 +107,21 @@ USE brunata;
 -- Show PROCEDURE status;
 
 
-CALL Brunata.popuniTabele('2016_01');
-CALL Brunata.popuniTabele('2016_02');
-CALL Brunata.popuniTabele('2016_03');
-CALL Brunata.popuniTabele('2016_04');
-CALL Brunata.popuniTabele('2016_10');
-CALL Brunata.popuniTabele('2016_11');
-CALL Brunata.popuniTabele('2016_12');
-CALL Brunata.popuniTabele('2017_01');
-CALL Brunata.popuniTabele('2017_02');
-CALL Brunata.popuniTabele('2017_03');
-CALL Brunata.popuniTabele('2017_04');
-CALL Brunata.popuniTabeleNOVO('2017_10');
-CALL Brunata.popuniTabeleNOVO('2017_11');
-CALL Brunata.popuniTabeleNOVO('2017_12');
+-- CALL Brunata.popuniTabele('2016_01');
+-- CALL Brunata.popuniTabele('2016_02');
+-- CALL Brunata.popuniTabele('2016_03');
+-- CALL Brunata.popuniTabele('2016_04');
+-- CALL Brunata.popuniTabele('2016_10');
+-- CALL Brunata.popuniTabele('2016_11');
+-- CALL Brunata.popuniTabele('2016_12');
+-- CALL Brunata.popuniTabele('2017_01');
+-- CALL Brunata.popuniTabele('2017_02');
+-- CALL Brunata.popuniTabele('2017_03');
+-- CALL Brunata.popuniTabele('2017_04');
+-- CALL Brunata.popuniTabeleNOVO('2017_10');
+-- CALL Brunata.popuniTabeleNOVO('2017_11');
+-- CALL Brunata.popuniTabeleNOVO('2017_12');
+-- CALL Brunata.popuniTabeleNOVO('2018_01');
 
 
 
@@ -132,42 +133,57 @@ CALL Brunata.popuniTabeleNOVO('2017_12');
 -- group by period
 -- order by PERIOD;
 
--- najveca ukupna potrosnja kWh
+-- -- najveca ukupna potrosnja kWh
+
+-- SELECT
+--     CONCAT_WS(" - ", vlasnik, ulaz, broj_stana) AS Stan,
+--     idracun as RACUN,
+--     MAX(stan_kWh) AS `potrosnja UKUPNA`
+-- FROM ocitani_impulsi Join stan on stan.idstan_novi=ocitani_impulsi.idstan
+-- -- izbacivanje januara 2016
+-- where idracun <> "201601"
+-- group by stan.idstan_novi
+-- order by `potrosnja UKUPNA` DESC
+-- limit 20;
+
+-- -- najveca VAR potrosnja kWh
+
+-- SELECT
+--     CONCAT_WS(" - ", vlasnik, ulaz, broj_stana) AS Stan,
+--     idracun as RACUN,
+--     MAX(stan_kWh_po_imp) AS `potrosnja VAR`
+-- FROM ocitani_impulsi Join stan on stan.idstan_novi=ocitani_impulsi.idstan
+-- -- izbacivanje januara 2016
+-- where idracun <> "201601"
+-- group by stan.idstan_novi
+-- order by `potrosnja VAR` DESC
+-- limit 20;
+
+
+-- -- najveca ZAJED potrosnja kWh
+
+-- SELECT
+--     CONCAT_WS(" - ", vlasnik, ulaz, broj_stana) AS Stan,
+--     idracun as RACUN,
+--     MAX(stan_kWh_po_m2) AS `potrosnja ZAJED`
+-- FROM ocitani_impulsi Join stan on stan.idstan_novi=ocitani_impulsi.idstan
+-- -- izbacivanje januara 2016
+-- where idracun <> "201601"
+-- group by stan.idstan_novi
+-- order by `potrosnja ZAJED` DESC
+-- limit 20;
+
+
+-- POSLEDNJI RACUN
 
 SELECT
     CONCAT_WS(" - ", vlasnik, ulaz, broj_stana) AS Stan,
     idracun as RACUN,
-    MAX(stan_kWh) AS `potrosnja UKUPNA`
+    stan_kWh_po_imp,
+    stan_kWh_po_m2,
+    stan_kWh-stan_kWh_po_imp - stan_kWh_po_m2 as greska,
+    stan_kWh
 FROM ocitani_impulsi Join stan on stan.idstan_novi=ocitani_impulsi.idstan
--- izbacivanje januara 2016
-where idracun <> "201601"
-group by stan.idstan_novi
-order by `potrosnja UKUPNA` DESC
-limit 20;
-
--- najveca VAR potrosnja kWh
-
-SELECT
-    CONCAT_WS(" - ", vlasnik, ulaz, broj_stana) AS Stan,
-    idracun as RACUN,
-    MAX(stan_kWh_po_imp) AS `potrosnja VAR`
-FROM ocitani_impulsi Join stan on stan.idstan_novi=ocitani_impulsi.idstan
--- izbacivanje januara 2016
-where idracun <> "201601"
-group by stan.idstan_novi
-order by `potrosnja VAR` DESC
-limit 20;
-
-
--- najveca ZAJED potrosnja kWh
-
-SELECT
-    CONCAT_WS(" - ", vlasnik, ulaz, broj_stana) AS Stan,
-    idracun as RACUN,
-    MAX(stan_kWh_po_m2) AS `potrosnja ZAJED`
-FROM ocitani_impulsi Join stan on stan.idstan_novi=ocitani_impulsi.idstan
--- izbacivanje januara 2016
-where idracun <> "201601"
-group by stan.idstan_novi
-order by `potrosnja ZAJED` DESC
-limit 20;
+where idracun = "201801"
+order by stan_kWh desc
+;
